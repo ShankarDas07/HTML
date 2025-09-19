@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>File Path system</h1>
+    <ol>
+        <li>
+            <details>
+                <summary><b>Step 1: The First Principle (The Fundamental Truth):</b> The most fundamental truth is this: A website is not one single file.</summary>
+                <ul>
+                    <li>
+                        <p>It's a collection of different files (HTML, CSS, JavaScript, images, videos, fonts) that all need to work together. These files are organized into folders, just like documents on your computer.</p>
+                    </li>
+                </ul>
+            </details>
+        </li>
+
+        <br>
+
+        <li>
+            <details>
+                <summary><b>Step 2: The Core Problem:</b> If your index.html file needs to display an image named logo.png, how does the HTML file tell the browser where to find logo.png?</summary>
+                <ul>
+                    <li><p>You can't just say src="logo.png" and expect it to work every time. What if the logo is in an images folder? What if it's on a completely different website?</p></li>
+                    <li><p>The browser needs an exact, unambiguous address to locate the file. A file path is that address.</p></li>
+                </ul>
+            </details>
+        </li>
+
+        <br>
+
+        <li>
+            <details>
+                <summary><b>Relative File Paths AND Absolute File Paths</b></summary>
+                <p><b>A) Relative File Paths:</b> A relative file path gives directions to a file starting from the location of the file you are currently in. You will use this 99% of the time for linking your own files together (images, CSS, other HTML pages).</p>
+                <ul>
+                    <li>
+                        <b>Scenario 1: Linking to a file in the SAME folder.</b>
+                        <ul>
+                            <li>The Problem: You are in index.html and want to link to about.html.</li>
+                            <li>The Logic: They are neighbors, living in the same my-website/ folder.</li>
+                            <li>The Syntax: You just use the filename.</li>
+                            <li><b>Example:</b><br><!-- inside index.html --><br>&lt;a href="about.html"&gt;About Us&lt;/a&gt;</li>
+                        </ul>
+                    </li>
+
+                    <br>
+
+                    <li>
+                        <b>Scenario 2: Linking to a file in a SUB-FOLDER (Going Down).</b>
+                        <ul>
+                            <li>The Problem: You are in index.html and want to display logo.png.</li>
+                            <li>The Logic: From index.html, you need to go into the images folder to find the logo.</li>
+                            <li>The Syntax: Write the folder name, a forward slash /, and then the filename.</li>
+                            <li><b>Example:</b><br><!-- inside index.html --><br>&lt;img src="images/logo.png" alt="My Website Logo"&gt;</li>
+                        </ul>
+                    </li>
+
+                    <br>
+
+                    <li>
+                        <b>Scenario 3: Linking to a file in a PARENT FOLDER (Going Up).</b>
+                        <ul>
+                            <li>The Problem: You are in contact.html (inside pages/) and want to display logo.png (inside images/).</li>
+                            <li>The Logic: Go up one level out of the pages folder to reach my-website/, then down into images/.</li>
+                            <li>The Syntax: Two dots and a slash (../) means "go up one level."</li>
+                            <li><b>Example:</b><br><!-- inside pages/contact.html --><br>&lt;img src="../images/logo.png" alt="My Website Logo"&gt;</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <p><b>B) Absolute File Paths:</b> An absolute file path gives the full, complete URL to a resource on the web. It starts with http:// or https://.</p>
+                <p><b>When to use:</b> Only when linking to a resource NOT on your own website.</p>
+                <ul>
+                    <li>Linking to another website</li>
+                    <li>Using a font from Google Fonts</li>
+                    <li>Using an image from an image-hosting service</li>
+                    <li><b>Example:</b><br><!-- External website --><br>&lt;a href="https://www.google.com"&gt;Search on Google&lt;/a&gt;<br><!-- External image --><br>&lt;img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Html5_logo_and_wordmark.svg" alt="HTML5 Logo"&gt;</li>
+                </ul>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <td><img src="Filepath1.png" alt="" height="250px"></td>
+                            <td><img src="Filepath2.jpg" alt="" height="250px"></td>
+                        </tr>
+                    </thead>
+                </table>
+            </details>
+        </li>
+
+        <br>
+
+        <li>
+            <details>
+                <summary><b>What is an HTML Boilerplate?</b></summary>
+                <p>An HTML boilerplate is the standard starting template for every HTML webpage. It provides all the basic instructions a browser needs before it displays your content. Without it, browsers may guess settings—but that can lead to unpredictable results.</p>
+                <ol>
+                    <li>
+                        <p><b>Why Do We Need It?</b> A browser cannot assume:</p>
+                        <ul>
+                            <li>Which HTML version you’re using</li>
+                            <li>Which language the page is written in</li>
+                            <li>How to scale the page for mobiles</li>
+                            <li>How to decode characters like © or ₹</li>
+                        </ul>
+                        <p>If you just write &lt;h1&gt;Hello&lt;/h1&gt;, the browser might still show it, but it will guess everything else, which can break layouts, encoding, or SEO.</p>
+                    </li>
+
+                    <li>
+                        <p><b>The Standard HTML5 Boilerplate Code:</b></p>
+                        <table>
+                            <tr>
+                                <td><img src="boilerPlatCode.png" alt="boilerPlatCode" height="150px"></td>
+                            </tr>
+                        </table>
+                    </li>
+
+                    <li>
+                        <p><b>Explanation of Each Line:</b></p>
+                            <table border="2">
+    <tr>
+        <th >Code</th>
+        <th >Purpose</th>
+    </tr>
+    <tr>
+        <td >&lt;!DOCTYPE html&gt;</td>
+        <td >Tells the browser to use <b>HTML5 standards mode</b> (not old “quirks mode”).</td>
+    </tr>
+    <tr>
+        <td >&lt;html lang="en"&gt;</td>
+        <td >Sets the page <b>language</b> (for SEO & accessibility). Change “en” to “hi” for Hindi, etc.</td>
+    </tr>
+    <tr>
+        <td >&lt;head&gt;...&lt;/head&gt;</td>
+        <td >Stores <b>metadata</b> (invisible setup info).</td>
+    </tr>
+    <tr>
+        <td >&lt;meta charset="UTF-8"&gt;</td>
+        <td >Uses <b>UTF-8</b> character encoding so all symbols & languages display correctly.</td>
+    </tr>
+    <tr>
+        <td >&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</td>
+        <td >Makes the page <b>responsive</b> on mobiles.</td>
+    </tr>
+    <tr>
+        <td>&lt;title&gt;Document&lt;/title&gt;</td>
+        <td >Sets the <b>tab name</b> and bookmark title.</td>
+    </tr>
+    <tr>
+        <td >&lt;body&gt;...&lt;/body&gt;</td>
+        <td >Contains <b>visible content</b> (text, images, links, etc.).</td>
+    </tr>
+</table>
+
+                    </li>
+                </ol>
+            </details>
+        </li>
+
+        <br>
+
+        <li>
+            <details>
+                <summary><b>What is a Multipage Website?</b></summary> 
+                <p> A multipage website splits content into separate pages (Home, About, Contact, etc.) instead of one long page. This keeps information organized and easy to navigate. </p> 
+                <ol> 
+                    <li> <p><b>Main Challenge:</b> All pages must look connected and allow smooth movement between them.</p> </li> 
+                    <li> <p><b>Key Solution:</b></p> <ul> 
+                    <li><b>Consistent Design:</b> Use the same header, footer, and style on every page so the site feels unified.</li> 
+                    <li><b>Navigation Links:</b> Add a menu using <code>&lt;a&gt;</code> (anchor) tags on every page to jump between pages.</li> 
+                </ul> 
+            </li> 
+        </ol> 
+            </details>
+
+        </li>
+
+        <br>
+
+        <li>
+            <details>
+                <summary><b>The &lt;div&gt; (The Generic Box)</b></summary>
+                <p>
+                    We need a way to group different elements (&lt;h1&gt;, &lt;p&gt;, &lt;img&gt;, etc.) into a single unit.
+                </p>
+                <ol>
+                    <li>
+                        <p><b>Problem:</b> Suppose you have a user profile card with an image, a heading, and a bio paragraph.  
+                        Without grouping, you cannot apply a single border, background, or positioning to all of them at once.</p>
+                    </li>
+                    <li>
+                        <p><b>Solution:</b> Use a generic, meaningless container called <b>&lt;div&gt;</b>.  
+                        It lets you wrap related elements inside one box for styling or layout.</p>
+                    </li>
+                </ol>
+                <p><b>Example Without div:</b></p>
+                <p>< img src="avatar.png" > <br> < h2>Arjun Kumar</h2> <br> < p>Loves to code and teach HTML.< /p > </p>
+                <p><b>Example With div:</b></p>
+                <p>< div > < img src="avatar.png"> <br> < h2 >Arjun Kumar< /h2 > <br> < p >Loves to codbre and teach HTML.< /p >< /div >  </p>
+                
+            </details>
+        </li>
+
+        <br>
+
+        <li>
+            <details>
+                <summary><b>class and id (The Labels for the Box)</b> </summary>
+            <ul>
+                <li>
+                    <p><b>First Principle : </b>Once we have boxes (< div >s), we need a way to identify and find them.</p>
+                </li>
+                <li>
+                    <p><b>The Core Problem : </b>Your webpage might have ten different profile cards, a sidebar, a main content area, and a photo gallery—all made of <div>s. How do you tell the browser (specifically, your CSS or JavaScript) which box you want to style? How do you say, "Make all the profile cards have a gray background, but make the one featured profile card have a gold border?" You need a targeting system.</p>
+                </li>
+
+                <li>
+                    <p><b>The Logical Solution: Two Types of Labels : </b>The logical solution is to invent two types of labels (which we call attributes) that you can add to any HTML tag.
+                        <ol>
+                            <li><b>A Unique Identifier: </b>We need a label for one, and only one, specific element on the entire page. It must be unique. This is perfect for major, one-of-a-kind layout sections like the main navigation bar or a search form. This is the id.</li>
+                            <li><b>A Reusable Classifier:</b> We also need a label that we can apply to multiple elements to group them into a category. This is for things that have a similar style or function, like all the profile cards, all the error messages, or all the "buy now" buttons. This is the class.</li>
+                        </ol>
+                    </p>
+                    <p><b>Analogy</b>
+                        <ul>
+                            <li>An id is like a person's unique Social Security Number or Aadhaar Number. Only one person can have it.</li>
+                            <li>A class is like a person's Job Title (e.g., "Engineer"). Many people in a company can have the class "Engineer".</li>
+                        </ul>
+                    </p>
+                    <p><b>Example : </b>
+                        <table>
+                            <tr>
+                                <td><img src="class Id Code.png" alt="class id code img" height="150px"></td>
+                            </tr>
+                        </table>
+                        These are three separate elements. What if you want to put a border around all three of them as a single block? Or give them all a shared background color? Or move them all to the right side of the page as one unit? You have no way to target them as a group.
+                    </p>
+                </li>
+
+
+                <li> <p><b>The Logical Solution: The Generic Container :  </b> <br>
+                    The most basic solution is to invent a generic, **meaningless** container. Its only job is to be a box that you can put other things into. It shouldn't have any inherent meaning or style; it's just a grouping mechanism. <br> This is the < div > (short for "division"). <br> By wrapping our elements in a < div >, we create a single "box" that we can now control.
+                    </p>
+                </li>
+                    <p>
+                        <b>Example : </b>
+                        <table>
+                            <tr>
+                                <td><img src="div Tag.png" alt="DIv tag" height="150px"></td>
+                            </tr>
+                        </table>
+                    </p>
+
+            </ul>
+            </details>
+        </li>
+            
+        <br>
+
+        <li>
+            <details>
+                <summary> <b>The < span > (The Inline Highlighter) </b></summary>
+                <ul>
+                    <li>
+                        <p><b>First Principle : </b> <br> Sometimes we need to label and style a piece of content within a line of text, without creating a new block. </p>
+                    </li>
+
+                    <li>
+                        <p><b>The Core Problem : </b> <br> What if you want to make just a single word inside a paragraph red? <br> < p >This is very important information.< /p > <br> You need to select the word "important". If you wrap it in a < div >, it will create a line break, ruining the sentence: <br> < p >This is very < div >important< /div > information.< /p > --> Renders incorrectly.</p>
+                    </li>
+                    
+                    <li>
+                        <p>
+                            <b>The Logical Solution: The Generic Inline Container : </b> <br>
+                            We need a container that works just like a < div >, but is inline, meaning it does not create a line break. It just wraps a small piece of content within the natural flow of the text.
+                        </p>
+                    </li>
+                </ul>
+            </details>
+        </li>
+
+
+        
+    </ol>
+</body>
+</html>

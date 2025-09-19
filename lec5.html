@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>HTML MEDIA</h1>
+
+    <ol>
+        
+        <li>
+            <b>First Principle: The Web is More Than Text and Images</b>
+            <p>The fundamental truth is that a webpage should be able to deliver any kind of content, not just static text and pictures. For years, this was a major problem. To play a video or audio file, browsers had to rely on third-party plugins like Adobe Flash, QuickTime, or Silverlight. This was inefficient, insecure, and inconsistent across different computers.</p>
+
+            <p><b>The Core Problem:</b></p>
+            <p>How can we embed video and audio into a webpage in a <b>standardized, native, and plugin-free</b> way? We need a universal system that works on every modern browser, from a desktop PC to a mobile phone, without requiring the user to install anything extra.</p>
+
+            <p><b>The Logical Solution: The HTML5 &lt;video&gt; and &lt;audio&gt; Tags</b></p>
+            <p>The solution was to create dedicated HTML tags whose sole purpose is to embed and control media.</p>
+
+        </li>
+
+        <br><br><br><br>
+
+        <li>
+            <b>Part 1: The Basics - Getting a Video on the Page</b>
+            <p>The star of the show is the &lt;video&gt; tag. At its simplest, it just needs to know the source of the video file.</p>
+
+            <p><b>Basic Implementation:</b></p>
+            <pre>
+&lt;!-- This is the most basic implementation --&gt;
+&lt;video src="my-awesome-video.mp4"&gt;&lt;/video&gt;
+            </pre>
+
+            <p><b>The Problem We Immediately Face:</b> If you put this on a page, you'll just see the first frame of the video as a static image. You can't play it, pause it, or change the volume. It's not a video player; it's just a video frame.</p>
+
+            <p><b>The Solution:</b> We need to add player controls. The browser has a beautiful set of default controls built-in, and we can turn them on with a simple attribute.</p>
+
+            <p><b>The controls Attribute: The Magic Switch</b></p>
+            <p>The controls attribute is a <b>boolean attribute</b>. You don't need to set it to a value (controls="true" is unnecessary); its mere presence turns the feature on.</p>
+
+            <pre>
+&lt;video src="my-awesome-video.mp4" controls&gt;&lt;/video&gt;
+            </pre>
+
+            <p><b>Result:</b> You now have a fully functional video player on your page, complete with a play/pause button, a timeline scrubber, volume controls, and a fullscreen option. This is the simplest, most effective way to embed a video.</p>
+        </li>
+
+        <br><br><br><br>
+
+        <li>
+            <b>Part 2: Intermediate - Gaining More Control with Attributes</b>
+            <p>Now that we have a player, how do we control its behavior and appearance? We use attributes.</p>
+
+            <p><b>width and height:</b> Just like with an &lt;img&gt; tag, you can set the dimensions of the player.</p>
+            <pre>
+&lt;video src="video.mp4" width="640" height="360" controls&gt;&lt;/video&gt;
+            </pre>
+
+            <p><b>autoplay:</b> This attribute will make the video start playing as soon as the page loads.</p>
+            <p><b>CRITICAL CAVEAT:</b> Modern browsers (Chrome, Safari, Firefox) will block autoplay with sound because it's a terrible user experience. To make autoplay work, you almost always have to add the <b>muted</b> attribute as well.</p>
+            <pre>
+&lt;!-- This will autoplay, but with no sound --&gt;
+&lt;video src="video.mp4" autoplay muted controls&gt;&lt;/video&gt;
+            </pre>
+
+            <p><b>loop:</b> Makes the video automatically restart from the beginning when it finishes. Great for background videos.</p>
+
+            <p><b>poster:</b> This is a fantastic feature for user experience. It specifies an image to display before the video is played, just like a YouTube thumbnail.</p>
+            <pre>
+&lt;video src="video.mp4" poster="images/video-thumbnail.jpg" controls&gt;&lt;/video&gt;
+            </pre>
+        </li>
+
+
+        <br><br><br><br>
+
+        <li>
+            <b>Part 3: The &lt;audio&gt; Tag</b>
+            <p>The good news is that the &lt;audio&gt; tag works almost identically to the &lt;video&gt; tag, just without the visual component.</p>
+
+            <p><b>The Problem:</b> How do we embed a sound file (like a song or a podcast) with player controls?</p>
+
+            <p><b>The Solution:</b> Use the &lt;audio&gt; tag with the <b>controls</b> attribute.</p>
+
+            <pre>
+&lt;p&gt;Listen to our theme song:&lt;/p&gt;
+&lt;audio src="audio/theme-song.mp3" controls&gt;&lt;/audio&gt;
+            </pre>
+
+            <p><b>Result:</b> A clean audio player with play/pause, a timeline, and volume controls. It uses the same attributes like <b>autoplay</b>, <b>loop</b>, and <b>muted</b>.</p>
+        </li>
+
+        <br><br><br><br>
+
+
+        <li>
+            <b> Example 1: The Robust & Professional Method (&lt;source&gt;)</b>
+
+            <pre>
+&lt;video width="320" height="240" controls&gt;
+  &lt;source src="movie.mp4" type="video/mp4"&gt;
+  &lt;source src="movie.ogg" type="video/ogg"&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt;
+            </pre>
+
+            <p>This method's primary purpose is <b>to ensure maximum browser compatibility.</b></p>
+
+            <p><b>The First Principle:</b> Not all web browsers support the same video file formats.</p>
+
+            <ul>
+                <li><b>.mp4 (H.264 codec):</b> This is the most widely supported format today. Almost all modern browsers can play it.</li>
+                <li><b>.webm (VP8/VP9 codec):</b> This is an open-source format heavily promoted by Google. It has excellent support in Chrome and Firefox.</li>
+                <li><b>.ogg (Theora codec):</b> This was an older open-source alternative, more popular before .webm took over.</li>
+            </ul>
+
+            <p><b>How It Works (The Logic):</b></p>
+            <p>This code gives the browser a <b>list of options</b>. The browser will read this list from top to bottom and play the <b>very first video format it understands</b>.</p>
+
+            <ol>
+                <li>The browser first sees &lt;source src="movie.mp4" ...&gt;. It asks itself, "Can I play MP4 video?"
+                    <ul>
+                        <li>If the answer is <b>YES</b>, it loads movie.mp4, plays it, and <b>completely ignores the rest of the &lt;source&gt; tags</b>.</li>
+                        <li>If the answer is <b>NO</b>, it moves to the next option.</li>
+                    </ul>
+                </li>
+                <li>The browser then sees &lt;source src="movie.ogg" ...&gt;. It asks, "Okay, can I play Ogg video?"
+                    <ul>
+                        <li>If the answer is <b>YES</b>, it loads movie.ogg and plays it.</li>
+                        <li>If the answer is <b>NO</b>, it has no other options.</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <p><b>The Fallback Text:</b></p>
+            <p>The text "Your browser does not support the video tag." is the final fallback. It will <b>only</b> be displayed if the user is on an extremely old browser (like Internet Explorer 8) that doesn't even recognize what the &lt;video&gt; tag is.</p>
+
+            <p><b>In Summary (Example 1):</b></p>
+            <ul>
+                <li><b>Pros:</b> The most reliable and professional way to embed video. It provides multiple formats to ensure your video will play for the largest possible audience across different browsers and devices.</li>
+                <li><b>Cons:</b> Requires you to have your video file encoded in multiple formats, which takes extra work.</li>
+            </ul>
+        </li>
+
+        <br><br><br><br>
+
+
+        <li>
+            <b>Example 2: The Simple & Direct Method (src attribute)</b>
+
+            <pre>
+&lt;video src="a.mp4" controls&gt;&lt;/video&gt;
+            </pre>
+
+            <p>This method's primary purpose is <b>simplicity and directness.</b></p>
+
+            <p><b>How It Works (The Logic):</b></p>
+            <p>This code gives the browser a <b>single, direct command</b>: "Play the file a.mp4." There are no other options.</p>
+
+            <ul>
+                <li>The browser sees the src attribute and asks itself, "Can I play MP4 video?"
+                    <ul>
+                        <li>If the answer is <b>YES</b>, it loads a.mp4 and plays it.</li>
+                        <li>If the answer is <b>NO</b>, the video simply will not play. The user will likely see an error message or a black box.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <p><b>In Summary (Example 2):</b></p>
+            <ul>
+                <li><b>Pros:</b> Very simple to write and easy to read. You only need one video file.</li>
+                <li><b>Cons:</b> It's an "all or nothing" approach. If the user's browser doesn't support the .mp4 format for some reason, the video fails completely. There is no fallback option.</li>
+            </ul>
+
+            <p><b>Comparison Table</b>
+                <table border="2">
+                    <tr>
+                        <th>Feature</th>
+                        <th>Example 1 (&lt;source&gt; Method)</th>
+                        <th>Example 2 (src Method)</th>
+                    </tr>
+                    <tr>
+                        <td>Browser Compatibility</td>
+                        <td>Excellent. Provides multiple formats as fallbacks.</td>
+                        <td>Good, but not guaranteed. Relies on a single format.</td>
+                    </tr>
+                    <tr>
+                    <td>Flexibility</td>
+                    <td>High. You can list many different formats.</td>
+                    <td>Low. Only one format is possible.</td>
+                    </tr>
+                    <tr>
+                        <td>Simplicity</td>
+                        <td>More complex. Requires multiple lines and files.</td>
+                        <td>Very simple. Requires only one line.</td>
+                    </tr>
+                    <tr>
+                        <td>Fallback for Old Browsers</td>
+                        <td>Excellent. Provides custom text if the &lt;video&gt; tag fails.</td>
+                        <td>None.</td>
+                    </tr>
+                    <tr>
+                        <td>Best Use Case</td>
+                        <td>Public-facing websites where you need to support all users.</td>
+                        <td>Quick tests, internal projects, or when you are 100% certain your target audience supports your one format.</td>
+                    </tr>
+                </table>
+            </p>
+        </li>
+    </ol>
+
+</body>
+</html>
